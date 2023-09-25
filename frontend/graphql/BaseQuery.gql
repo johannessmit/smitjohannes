@@ -1,18 +1,6 @@
 query BaseQuery($locale: I18NLocaleCode, $filters: PageFiltersInput) {
   menu(locale: $locale) {
-    data {
-      attributes {
-        pages {
-          data {
-            id
-            attributes {
-              slug
-              title
-            }
-          }
-        }
-      }
-    }
+    ...MenuFrament
   }
   pages(filters: $filters, locale: $locale) {
     data {

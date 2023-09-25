@@ -1,0 +1,15 @@
+fragment MenuFrament on MenuEntityResponse {
+    data {
+        attributes {
+            pages {
+                data {
+                    id
+                    attributes {
+                    slug
+                    title
+                    }
+                }
+            }
+        }
+    }
+}

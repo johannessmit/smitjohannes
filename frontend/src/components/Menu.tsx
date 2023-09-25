@@ -20,11 +20,13 @@ const Menu = ({
                 'opacity-0': fade
             }
         )}>
-            <div className="text-xl font-bold tracking-widest" onClick={() => setFade(!fade)}>J-Spijkerman</div>
+            <div className="text-xl font-bold tracking-widest" onClick={() => setFade(!fade)}>
+                <a href="/">J-Spijkerman</a>
+            </div>
             <nav>
-                {menu?.data?.attributes?.pages?.data?.filter(({attributes}) => attributes?.slug !== 'home')?.map(({id, attributes}) => {
+                {menu?.data?.attributes?.pages?.data?.filter(({ attributes }) => attributes?.slug !== 'home')?.map(({ id, attributes }) => {
                     return (
-                        <a 
+                        <a
                             key={id}
                             href={`${attributes?.slug}`}
                             className="text-l font-semibold tracking-wider p-4"

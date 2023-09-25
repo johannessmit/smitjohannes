@@ -21,7 +21,7 @@ async function getData() {
 }
 
 export default async function Home() {
-  const { menu, pages } = await getData();
+  const { menu } = await getData();
 
   return (
     <>
