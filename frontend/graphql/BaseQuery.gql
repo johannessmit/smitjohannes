@@ -1,0 +1,64 @@
+query BaseQuery($locale: I18NLocaleCode, $filters: PageFiltersInput) {
+  menu(locale: $locale) {
+    data {
+      attributes {
+        pages {
+          data {
+            id
+            attributes {
+              slug
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+  pages(filters: $filters, locale: $locale) {
+    data {
+      id
+      attributes {
+        cover {
+          data {
+            attributes {
+              height
+              alternativeText
+              caption
+              name
+              url
+              width
+            }
+          }
+        }
+        title
+        page {
+          ... on Error {
+            code
+            message
+          }
+          ... on ComponentPageParagraph {
+            id
+            title
+            content
+          }
+          ... on ComponentPageImage {
+            id
+            title
+            alt
+            image {
+              data {
+                attributes {
+                  alternativeText
+                  caption
+                  height
+                  width
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
