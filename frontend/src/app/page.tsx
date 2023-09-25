@@ -1,7 +1,7 @@
 import Menu from '@/components/Menu';
-import { getClient } from '../lib/apollo/ApolloClient';
-import Image from 'next/image';
 import { BaseQueryDocument } from '@/gql/graphql';
+import Image from 'next/image';
+import { getClient } from '../lib/apollo/ApolloClient';
 
 
 async function getData() {

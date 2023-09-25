@@ -1,19 +1,17 @@
 "use client";
 
-import { MenuEntityResponse } from "@/gql/graphql";
+import { Maybe, MenuEntityResponse } from "@/gql/graphql";
 import classNames from "classnames";
 import { useState } from "react";
 
 type MenuProps = {
-    menu: MenuEntityResponse
+    menu?: Maybe<MenuEntityResponse>
 };
 
 const Menu = ({
     menu
 }: MenuProps) => {
     const [fade, setFade] = useState(false);
-
-    console.log(menu?.data?.attributes?.pages);
 
     return (
         <header className={classNames(
@@ -24,7 +22,7 @@ const Menu = ({
         )}>
             <div className="text-xl font-bold tracking-widest" onClick={() => setFade(!fade)}>J-Spijkerman</div>
             <nav>
-                {menu.data?.attributes?.pages?.data?.filter(({attributes}) => attributes?.slug !== 'home')?.map(({id, attributes}) => {
+                {menu?.data?.attributes?.pages?.data?.filter(({attributes}) => attributes?.slug !== 'home')?.map(({id, attributes}) => {
                     return (
                         <a 
                             key={id}
