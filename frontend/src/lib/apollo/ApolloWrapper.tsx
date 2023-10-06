@@ -10,6 +10,7 @@ import {
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { setVerbosity } from "ts-invariant";
 import { httpLink } from "./link/HttpLink";
+import {PropsWithChildren} from "react";
 
 if (process.env.NODE_ENV === "development") {
   setVerbosity("debug");
@@ -35,7 +36,7 @@ function makeClient() {
   });
 }
 
-export function ApolloWrapper({ children }: React.PropsWithChildren) {
+export function ApolloWrapper({ children }: PropsWithChildren) {
   return (
     <ApolloNextAppProvider makeClient={makeClient}>
       {children}

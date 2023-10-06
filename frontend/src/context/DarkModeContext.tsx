@@ -13,9 +13,7 @@ const DarkModeContext = createContext<DarkModeContextInterface>({
 });
 
 const DarkModeProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
-    const preferredColorSchemeQuery = typeof window !== "undefined"
-        ? window.matchMedia('(prefers-color-scheme: dark)')
-        : null;
+    const preferredColorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const prefersDarkMode = () => preferredColorSchemeQuery?.matches ?? false;
 
     const [darkMode, setDarkMode] = useState(prefersDarkMode());

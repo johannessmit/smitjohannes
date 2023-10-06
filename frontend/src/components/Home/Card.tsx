@@ -44,7 +44,7 @@ const Card: FC<CardProps> = (
 ) => {
     const addLink = (component: ReactElement) => {
         return (
-            <a href={callToAction}>{component}</a>
+            <a className="h-full" href={callToAction}>{component}</a>
         )
     }
 

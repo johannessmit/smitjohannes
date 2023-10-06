@@ -1,18 +1,25 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import {useCallback, useEffect, useState} from "react";
+import classNames from "classnames";
 
 interface TypedTextProps {
+    className?: string
+    bracketClassName?: string
     descriptions: Array<string>
     interval?: number
     withBracket?: boolean
 }
 
-const TypedText = ({
-    descriptions,
-    interval = 2000,
-    withBracket = true,
-}: TypedTextProps) => {
+const TypedText = (
+    {
+        descriptions,
+        className = "",
+        bracketClassName = "",
+        interval = 2000,
+        withBracket = true,
+    }: TypedTextProps
+) => {
     const [currentDescriptionIndex, setCurrentDescriptionIndex] = useState(0);
     const [renderedDescription, setRenderedDescription] = useState("");
     const [delta, setDelta] = useState(500);
@@ -55,10 +62,16 @@ const TypedText = ({
 
 
     return (
-        <span>
-            {renderedDescription}
-            {withBracket && <span className="animate-pulse bg-transparent pl-2 border-r-4 border-r-white"></span>}
-        </span>
+        <>
+            <span className={className}>
+                {renderedDescription}
+            </span>
+            {withBracket && <span
+                className={classNames(
+                    "animate-pulse text-transparent bg-transparent pl-2 border-r-4",
+                    bracketClassName
+                )}></span>}
+        </>
     );
 };
 
