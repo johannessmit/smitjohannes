@@ -25,7 +25,7 @@ const HomeHero = ({ descriptions }: HomeHeroProps) => {
                 className="absolute -z-10 h-screen top-0"
             />
             <div className="h-screen absolute z-0 top-0 bg-gradient-to-t from-gray-900 w-screen from-0% via-25% to-40%" />
-            <h1 className="text-8xl ">
+            <h1 className="p-4 text-4xl md:text-8xl">
                 <TypedText
                     className="text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400"
                     descriptions={descriptions}

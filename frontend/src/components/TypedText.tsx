@@ -68,7 +68,7 @@ const TypedText = (
             </span>
             {withBracket && <span
                 className={classNames(
-                    "animate-pulse text-transparent bg-transparent pl-2 border-r-4",
+                    "animate-pulse text-transparent bg-transparent border-r-2 pl-0.5 md:pl-2 md:border-r-4",
                     bracketClassName
                 )}></span>}
         </>
