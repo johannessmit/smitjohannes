@@ -1,15 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface TypedTextProps {
     descriptions: Array<string>
-    interval: number
-};
+    interval?: number
+    withBracket?: boolean
+}
 
 const TypedText = ({
     descriptions,
-    interval
+    interval = 2000,
+    withBracket = true,
 }: TypedTextProps) => {
     const [currentDescriptionIndex, setCurrentDescriptionIndex] = useState(0);
     const [renderedDescription, setRenderedDescription] = useState("");
@@ -17,7 +19,7 @@ const TypedText = ({
     const [isDeleting, setIsDeleting] = useState(false);
     const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
 
-    const tick = () => {
+    const tick = useCallback(() => {
         const fullText = descriptions[currentDescriptionIndex % descriptions.length];
 
         setRenderedDescription(isDeleting
@@ -41,18 +43,22 @@ const TypedText = ({
         }
 
         setDelta(delta);
-    };
+    }, [descriptions, currentDescriptionIndex, renderedDescription, isDeleting, interval]);
 
+    // eslint-ignore react-hooks-exhaustive-deps
     useEffect(() => {
         const id = setTimeout(tick, delta);
         setTimeoutId(id);
 
         return () => clearTimeout(timeoutId);
-    }, [currentDescriptionIndex, renderedDescription, isDeleting]);
+    }, [tick]);
 
 
     return (
-        <span>{renderedDescription}<span className="animate-pulse bg-transparent pl-2 border-r-4 border-r-white"></span></span>
+        <span>
+            {renderedDescription}
+            {withBracket && <span className="animate-pulse bg-transparent pl-2 border-r-4 border-r-white"></span>}
+        </span>
     );
 };
 

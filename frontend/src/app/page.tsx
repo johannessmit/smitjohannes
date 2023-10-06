@@ -1,39 +1,41 @@
+import Cards from '@/components/Home/Cards';
 import HomeHero from '@/components/Home/HomeHero';
 import Menu from '@/components/Menu';
-import { BaseQueryDocument } from '@/gql/graphql';
-import { getClient } from '../lib/apollo/ApolloClient';
+import {BaseQueryDocument} from '@/gql/graphql';
+import {getClient} from '@/lib/apollo/ApolloClient';
 
 
 async function getData() {
-  const { data } = await getClient().query({
-    query: BaseQueryDocument,
-    variables: {
-      "locale": "en",
-      "filters": {
-        "slug": {
-          "eq": "home"
+    const {data} = await getClient().query({
+        query: BaseQueryDocument,
+        variables: {
+            "locale": "en",
+            "filters": {
+                "slug": {
+                    "eq": "home"
+                }
+            }
         }
-      }
-    }
-  });
+    });
 
-  return data;
+    return data;
 }
 
 export default async function Home() {
-  const { menu } = await getData();
+    const {menu} = await getData();
 
-  return (
-    <>
-      <Menu menu={menu} />
-      <HomeHero
-        descriptions={[
-          'Web Development',
-          'Software Architect',
-          'Helping people grow',
-          'Build a better tomorrow'
-        ]}
-      />
-    </>
-  )
+    return (
+        <>
+            <Menu menu={menu}/>
+            <HomeHero
+                descriptions={[
+                    'Web Development',
+                    'Software Architect',
+                    'Helping people grow',
+                    'Build a better tomorrow'
+                ]}
+            />
+            <Cards/>
+        </>
+    )
 }

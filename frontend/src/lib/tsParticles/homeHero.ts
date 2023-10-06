@@ -2,11 +2,6 @@ import type { ISourceOptions } from "tsparticles-engine";
 
 const options: ISourceOptions = {
     name: "Plasma",
-    background: {
-        color: {
-            value: "#000000",
-        },
-    },
     particles: {
         number: {
             value: 150,
@@ -44,7 +39,7 @@ const options: ISourceOptions = {
             onHover: {
                 enable: true,
                 mode: "repulse",
-            },
+            }
         },
         modes: {
             repulse: {

@@ -18,6 +18,7 @@ export interface PageParagraph extends Schema.Component {
   info: {
     displayName: 'Paragraph';
     icon: 'bold';
+    description: '';
   };
   attributes: {
     title: Attribute.String & Attribute.Required;

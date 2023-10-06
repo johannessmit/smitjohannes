@@ -1,16 +1,21 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 function useWindowScroll(callback: (e: any) => void) {
-    const handleScroll = (e: any) => {
+    const handleScroll = useCallback((e: any) => {
         callback(e);
-    };
+    }, [callback]);
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll, true);
+        if (typeof window !== "undefined") {
+            window?.addEventListener("scroll", handleScroll, true);
+        }
+
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            if (typeof window !== "undefined") {
+                window?.removeEventListener("scroll", handleScroll);
+            }
         };
-    }, [callback]);
+    }, [handleScroll]);
 }
 
 export default useWindowScroll;
