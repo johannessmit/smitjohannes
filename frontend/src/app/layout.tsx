@@ -4,6 +4,7 @@ import {Roboto} from 'next/font/google'
 import {ApolloWrapper} from '@/lib/apollo/ApolloWrapper'
 import {ReactNode} from "react";
 import {DarkModeProvider} from "@/context/DarkModeContext";
+import ScrollTo from "@/components/ScrollTo";
 
 const roboto = Roboto({
     weight: ["100", "300", "400", "500", "700", "900"],
@@ -22,9 +23,10 @@ export default function RootLayout({children}: {
         <html lang="en">
         <DarkModeProvider>
             <body className={`${roboto.className} relative text-slate-100 bg-gray-900`}>
-            <ApolloWrapper>
-                {children}
-            </ApolloWrapper>
+                <ApolloWrapper>
+                    {children}
+                    <ScrollTo />
+                </ApolloWrapper>
             </body>
         </DarkModeProvider>
         </html>

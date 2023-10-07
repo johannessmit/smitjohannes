@@ -1,8 +1,24 @@
-import { useCallback, useEffect } from "react";
+import {useCallback, useEffect, useState} from "react";
 
-function useWindowScroll(callback: (e: any) => void) {
+interface scrollState {
+    x: number,
+    y: number
+}
+
+const useWindowScroll = (callback: (prevScrollPosition: scrollState, scrollPosition: scrollState) => void) => {
+    const [scrollPosition, setScrollPosition] = useState<scrollState>({
+        x: window.scrollX,
+        y: window.scrollY
+    });
+
     const handleScroll = useCallback((e: any) => {
-        callback(e);
+        const newScrollPosition = {
+            x: e.currentTarget.scrollX,
+            y: e.currentTarget.scrollY
+        };
+
+        callback(scrollPosition, newScrollPosition);
+        setScrollPosition(newScrollPosition);
     }, [callback]);
 
     useEffect(() => {
