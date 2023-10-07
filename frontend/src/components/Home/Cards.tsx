@@ -5,7 +5,7 @@ import {ClipboardIcon, CodeBracketSquareIcon} from "@heroicons/react/24/outline"
 const Cards = () => {
     return (
         <main
-            className="h-screen"
+             className="md:h-screen"
         >
             <div
                 className="grid grid-cols-1 md:grid-rows-1 md:grid-cols-3 gap-12 p-4 md:p-24 w-full items-center relative"

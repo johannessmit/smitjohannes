@@ -29,10 +29,11 @@ export default async function Home() {
             <Menu menu={menu}/>
             <HomeHero
                 descriptions={[
-                    'Web Development',
-                    'Software Architect',
-                    'Helping people grow',
-                    'Build a better tomorrow'
+                    'I develop.',
+                    'I tinker.',
+                    'I talk.',
+                    'I\'m Johannes Spijkerman.',
+                    'And I\'m a web-developer with too many hobbies.'
                 ]}
             />
             <Cards/>
