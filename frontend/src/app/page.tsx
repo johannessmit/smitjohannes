@@ -1,8 +1,8 @@
 import Cards from '@/components/Home/Cards';
 import HomeHero from '@/components/Home/HomeHero';
-import Menu from '@/components/Menu';
 import {BaseQueryDocument} from '@/gql/graphql';
 import {getClient} from '@/lib/apollo/ApolloClient';
+import Default from "@/layouts/Default";
 
 
 async function getData() {
@@ -25,8 +25,7 @@ export default async function Home() {
     const {menu} = await getData();
 
     return (
-        <>
-            <Menu menu={menu}/>
+        <Default menuItems={menu}>
             <HomeHero
                 descriptions={[
                     'I develop.',
@@ -37,6 +36,6 @@ export default async function Home() {
                 ]}
             />
             <Cards/>
-        </>
-    )
+        </Default>
+    );
 }

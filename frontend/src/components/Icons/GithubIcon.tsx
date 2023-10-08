@@ -1,12 +1,12 @@
-import {FC, useContext} from "react";
-import {DarkModeContext} from "@/context/DarkModeContext";
+import {FC} from "react";
 
 interface GithubIconProps {
     className: string
 }
 
 const GithubIcon: FC<GithubIconProps> = ({ className }) => {
-    const {darkMode} = useContext(DarkModeContext);
+    // const {darkMode} = useContext(DarkModeContext);
+    const darkMode = true;
 
     return (
         <svg className={className} viewBox="0 0 98 98" width="98" height="96" xmlns="http://www.w3.org/2000/svg">
