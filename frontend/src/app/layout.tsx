@@ -20,15 +20,15 @@ export default function RootLayout({children}: {
     children: ReactNode
 }) {
     return (
-        <html lang="en">
-        <DarkModeProvider>
-            <body className={`${roboto.className} relative text-slate-100 bg-gray-900`}>
-                <ApolloWrapper>
-                    {children}
-                    <ScrollTo />
-                </ApolloWrapper>
-            </body>
-        </DarkModeProvider>
-        </html>
+        <ApolloWrapper>
+            <html lang="en">
+            <DarkModeProvider>
+                <body className={`${roboto.className} relative text-slate-100 bg-gray-900`}>
+                {children}
+                <ScrollTo />
+                </body>
+            </DarkModeProvider>
+            </html>
+        </ApolloWrapper>
     )
 }

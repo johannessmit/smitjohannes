@@ -39,7 +39,7 @@ const ScrollTo: FC = () => {
 
     return (
         <div
-            className="fixed md:hidden w-10 h-10 p-2 bg-gray-800 rounded shadow opacity-90 bottom-2 right-2 z-50 cursor-pointer"
+            className="fixed md:hidden w-10 h-10 p-2 bg-gray-800 rounded shadow opacity-90 bottom-2 right-2 z-40 cursor-pointer"
             onClick={() => handleClick()}
         >
             <ArrowDownIcon
