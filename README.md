@@ -10,6 +10,10 @@ Planning only. There is no application code yet. The only decision made so far i
 
 Node.js 22.22 or newer, as required by React Router v8. Use nvm locally. The deployed app will run in Docker.
 
+## Agentic-first
+
+This site is developed agentic-first. Agent instructions live in [`AGENTS.md`](AGENTS.md), and `CLAUDE.md` imports it. See [ADR 0002](docs/adr/0002-agentic-first-development.md) for the reasoning.
+
 ## Previous version
 
 The earlier Next.js and Strapi site is preserved on the `backup/legacy-site` branch.
