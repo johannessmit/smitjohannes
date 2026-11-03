@@ -16,9 +16,9 @@ The previous site (Next.js + Apollo/GraphQL frontend, Strapi backend, Docker Com
 
 **Use React Router v8 in framework mode.** This is the only decision made so far.
 
-Remix 1 and 2 became React Router framework mode. "Remix 3" is a separate project that leaves React, so it is not an option. Use plain Vite, with loaders and actions. Content pages can be prerendered, and SSR stays available for dynamic routes.
+Remix 1 and 2 became React Router framework mode. "Remix 3" is a separate project that leaves React, so it is not an option. Framework mode builds on Vite and uses route loaders and actions, so no extra bundler is needed. Content pages can be prerendered, and SSR stays available for dynamic routes.
 
-Sources conflict on the details of React Router v8 and Remix v2 end-of-life, so check the official changelogs when starting.
+The Remix to React Router rename is described in [React Training](https://reacttraining.com/blog/remix-vs-react-router-framework) and [Build with Matija](https://www.buildwithmatija.com/blog/remix-vs-react-router-what-happened-to-remix-2026). Both are secondary sources, and they disagree on the Remix v2 end-of-life date. The React Router v8 scaffold (8.5.1) was installed during the spike, but the end-of-life date has not been checked against the official React Router changelog. Check it before relying on it.
 
 ## Not decided
 
