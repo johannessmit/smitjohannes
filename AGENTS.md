@@ -32,7 +32,7 @@ Use Node >= 22.22 (`nvm use`), pnpm.
 - Unit tests: `pnpm test` (Vitest)
 - E2E tests: `pnpm test:e2e` (Playwright, run `pnpm exec playwright install chromium` once)
 
-Run typecheck, lint and test before claiming work is done. E2E has not been run yet. There is no CI yet, so these checks only run locally.
+Run typecheck, lint and test before claiming work is done. CI (`.github/workflows/ci.yml`) runs typecheck, lint, test and build in one job and Playwright e2e in another, on every PR and push to `main`. Keep it green and keep it in sync with the commands above. It has not run on GitHub yet, so the workflow itself is unverified until the first run.
 
 `docker compose up` needs a `.env` (`cp .env.example .env`).
 

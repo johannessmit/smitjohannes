@@ -20,7 +20,7 @@ Use Node 22.22 or newer (`nvm use`) and pnpm.
 - `pnpm test:e2e`: Playwright (run `pnpm exec playwright install chromium` once)
 - `docker compose up`: dev server in a container (copy `.env.example` to `.env` first)
 
-There is no CI yet. Full list in [`AGENTS.md`](AGENTS.md).
+GitHub Actions runs the checks and e2e tests on every PR. Full list in [`AGENTS.md`](AGENTS.md).
 
 ## Agentic-first
 
