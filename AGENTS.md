@@ -16,10 +16,13 @@ The old Next.js/Strapi site lives on the `backup/legacy-site` branch. Do not por
 
 - React Router v8, framework mode (Vite based). Not Next.js, not Remix.
 - Node.js >= 22.22 (nvm locally, Docker for deploy).
+- Category: portfolio (personal site with landing page). TypeScript throughout.
+- Tooling: pnpm, Biome (lint and format), Vitest (unit), Playwright (e2e).
+- Styling, CMS/content, analytics, design system and hosting are still open. See "Current state".
 
 ## Commands
 
-None yet. When the app is scaffolded, list install, dev, build, typecheck, lint and test commands here, and run them before claiming work is done.
+TODO(setup): fill in step 7
 
 ## Conventions
 
