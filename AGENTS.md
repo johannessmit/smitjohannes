@@ -15,7 +15,7 @@ The old Next.js/Strapi site lives on the `backup/legacy-site` branch. Do not por
 ## Stack and prerequisites
 
 - React Router v8, framework mode (Vite based). Not Next.js, not Remix.
-- Node.js >= 22.22 (nvm locally, Docker for deploy).
+- Node.js >= 22.22 (nvm locally, Docker for deploy). Pinned to 22.23.4 in `.nvmrc` (local and CI) and in the `compose.yml` image. Change all three together.
 - Category: portfolio (personal site with landing page). TypeScript throughout.
 - Tooling: pnpm, Biome (lint and format), Vitest (unit), Playwright (e2e).
 - Styling, CMS/content, analytics, design system and hosting are still open. See "Current state".
@@ -32,7 +32,7 @@ Use Node >= 22.22 (`nvm use`), pnpm.
 - Unit tests: `pnpm test` (Vitest)
 - E2E tests: `pnpm test:e2e` (Playwright, run `pnpm exec playwright install chromium` once)
 
-Run typecheck, lint and test before claiming work is done. CI (`.github/workflows/ci.yml`) runs typecheck, lint, test and build in one job and Playwright e2e in another, on every PR and push to `main`. Keep it green and keep it in sync with the commands above. It has not run on GitHub yet, so the workflow itself is unverified until the first run.
+Run typecheck, lint and test before claiming work is done. CI (`.github/workflows/ci.yml`) runs typecheck, lint, test and build in one job and Playwright e2e in another, on every PR and push to `main`. Keep it green and keep it in sync with the commands above. Both jobs passed on PR #7 (2026-11-05). Actions are pinned to commit SHAs.
 
 `docker compose up` needs a `.env` (`cp .env.example .env`).
 
