@@ -32,7 +32,21 @@ Use Node >= 22.22 (`nvm use`), pnpm.
 - Unit tests: `pnpm test` (Vitest)
 - E2E tests: `pnpm test:e2e` (Playwright, run `pnpm exec playwright install chromium` once)
 
-Run typecheck, lint and test before claiming work is done. E2E has not been run yet.
+Run typecheck, lint and test before claiming work is done. E2E has not been run yet. There is no CI yet, so these checks only run locally.
+
+`docker compose up` needs a `.env` (`cp .env.example .env`).
+
+## Vendored agent skills
+
+`.claude/skills/` holds third-party agent skills installed with `npx skills@1.7.6 add <repo> --skill <name> -a claude-code -y`. `skills-lock.json` records them by content hash only: the CLI cannot pin a commit, so reinstalls are not reproducible. They run with full agent permissions.
+
+- Sources: `remix-run/agent-skills`, `antfu/skills`, `currents-dev/playwright-best-practices-skill`, `pbakaus/impeccable`, `vercel-labs/agent-skills`, `leonxlnx/taste-skill`.
+- Licenses are not recorded yet and the files are not fully reviewed.
+- Do not edit them by hand. Update by reinstalling, and review the diff.
+
+## Known temporary scaffold leftovers
+
+`app/root.tsx` still has the scaffold's Inter font link and dead Tailwind class names. Both are marked `TEMPORARY` in the code and go away when styling and the design system are decided.
 
 ## Conventions
 

@@ -12,7 +12,15 @@ Node.js 22.22 or newer, as required by React Router v8. Use nvm locally. The dep
 
 ## Commands
 
-Use Node 22.22 or newer and pnpm. `pnpm install`, then `pnpm dev`, `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm test`. End-to-end tests: `pnpm test:e2e` (run `pnpm exec playwright install chromium` once). `docker compose up` starts the dev server in a container. Full list in [`AGENTS.md`](AGENTS.md).
+Use Node 22.22 or newer (`nvm use`) and pnpm.
+
+- `pnpm install`
+- `pnpm dev`: dev server on http://localhost:5173
+- `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm test`
+- `pnpm test:e2e`: Playwright (run `pnpm exec playwright install chromium` once)
+- `docker compose up`: dev server in a container (copy `.env.example` to `.env` first)
+
+There is no CI yet. Full list in [`AGENTS.md`](AGENTS.md).
 
 ## Agentic-first
 

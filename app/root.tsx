@@ -10,6 +10,8 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 
+// TEMPORARY: scaffold default (Inter via Google Fonts). Fonts and the design
+// system are still open (see AGENTS.md). Replace once an ADR decides them.
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -61,6 +63,9 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     stack = error.stack;
   }
 
+  // TEMPORARY: the class names below are leftovers from the scaffold's Tailwind
+  // template and do nothing (Tailwind is not installed). Styling is still open.
+  // Restyle once the styling approach is decided.
   return (
     <main className="pt-16 p-4 container mx-auto">
       <h1>{message}</h1>
