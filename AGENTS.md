@@ -8,7 +8,7 @@ Personal website of Johannes Spijkerman, restarted from scratch in November 2026
 
 ## Current state
 
-Planning only. No application code yet. Decided: React Router v8 in framework mode. Open: CMS/content, analytics, design system, hosting. Do not pick an open item on your own. Propose it and write an ADR.
+Bare React Router v8 scaffold (placeholder home page, no styling library). Decided: React Router v8 in framework mode. Open: CMS/content, analytics, design system, hosting. Do not pick an open item on your own. Propose it and write an ADR.
 
 The old Next.js/Strapi site lives on the `backup/legacy-site` branch. Do not port code from it unless asked.
 
@@ -22,7 +22,17 @@ The old Next.js/Strapi site lives on the `backup/legacy-site` branch. Do not por
 
 ## Commands
 
-TODO(setup): fill in step 7
+Use Node >= 22.22 (`nvm use`), pnpm.
+
+- Install: `pnpm install`
+- Dev: `pnpm dev` (http://localhost:5173), or `docker compose up`
+- Build: `pnpm build`
+- Typecheck: `pnpm typecheck`
+- Lint: `pnpm lint` (Biome). Format and autofix: `pnpm format`
+- Unit tests: `pnpm test` (Vitest)
+- E2E tests: `pnpm test:e2e` (Playwright, run `pnpm exec playwright install chromium` once)
+
+Run typecheck, lint and test before claiming work is done. E2E has not been run yet.
 
 ## Conventions
 
