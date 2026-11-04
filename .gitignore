@@ -1,1 +1,11 @@
 .env
+.serena/
+.DS_Store
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+/playwright-report/
+/test-results/

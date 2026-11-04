@@ -4,11 +4,23 @@ Personal website of Johannes Spijkerman. The project was restarted from scratch 
 
 ## Status
 
-Planning only. There is no application code yet. The only decision made so far is the framework: React Router v8 in framework mode. See [ADR 0001](docs/adr/0001-framework-react-router.md) for the decision, the open questions (CMS, analytics, design, hosting) and the next steps.
+Bare scaffold only: a placeholder home page, no styling, content or hosting yet. The only decision made so far is the framework: React Router v8 in framework mode. See [ADR 0001](docs/adr/0001-framework-react-router.md) for the decision, the open questions (CMS, analytics, design, hosting) and the next steps.
 
 ## Prerequisites
 
 Node.js 22.22 or newer, as required by React Router v8. Use nvm locally. The deployed app will run in Docker.
+
+## Commands
+
+Use Node 22.22 or newer (`nvm use`) and pnpm.
+
+- `pnpm install`
+- `pnpm dev`: dev server on http://localhost:5173
+- `pnpm build`, `pnpm typecheck`, `pnpm lint`, `pnpm test`
+- `pnpm test:e2e`: Playwright (run `pnpm exec playwright install chromium` once)
+- `docker compose up`: dev server in a container (copy `.env.example` to `.env` first)
+
+GitHub Actions runs the checks and e2e tests on every PR. Full list in [`AGENTS.md`](AGENTS.md).
 
 ## Agentic-first
 
