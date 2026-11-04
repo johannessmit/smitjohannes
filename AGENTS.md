@@ -38,11 +38,11 @@ Run typecheck, lint and test before claiming work is done. CI (`.github/workflow
 
 ## Vendored agent skills
 
-`.claude/skills/` holds third-party agent skills installed with `npx skills@1.7.6 add <repo> --skill <name> -a claude-code -y`. `skills-lock.json` records them by content hash only: the CLI cannot pin a commit, so reinstalls are not reproducible. They run with full agent permissions.
+`.claude/skills/` holds third-party agent skills installed with `npx skills@1.7.6 add <repo> --skill <name> -a claude-code -y`. `skills-lock.json` records them by content hash only, because the CLI has no ref flag. Commit pins, licenses and review notes are in [`docs/vendored-skills.md`](docs/vendored-skills.md). They run with full agent permissions.
 
-- Sources: `remix-run/agent-skills`, `antfu/skills`, `currents-dev/playwright-best-practices-skill`, `pbakaus/impeccable`, `vercel-labs/agent-skills`, `leonxlnx/taste-skill`.
-- Licenses are not recorded yet and the files are not fully reviewed.
-- Do not edit them by hand. Update by reinstalling, and review the diff.
+- Installed content was verified identical to the pinned upstream commits. Reinstalling at a pinned commit is unverified, see the doc.
+- Licenses are recorded. The scripts got a pattern scan, not a full audit.
+- Do not edit them by hand. Update by reinstalling, review the diff, and update the doc.
 
 ## Known temporary scaffold leftovers
 
