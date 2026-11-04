@@ -30,9 +30,16 @@ If anything changed, the install did not match the pin. Review the diff before c
 
 ## Review notes
 
-A scan for `eval`, `new Function`, `child_process`, `exec(` and `spawn(` in the skills' `.js`, `.mjs`, `.sh` and `.py` files found none. This is a pattern scan, not a full audit.
+This is a pattern scan plus a read of the flagged spots, not a full audit. A first version of this note wrongly said no process spawning was found (the scan output was truncated); the corrected list is below.
 
-- `impeccable/scripts/impeccable` (shell launcher): can download a binary from `github.com/pbakaus/impeccable/releases` and checks its sha256 against `engine-checksums.txt` before running. It refuses unverified downloads.
-- `impeccable/scripts/live-browser*.js`: browser-side code that uses `fetch`.
+- `design-taste-frontend/scripts/lib/cdp.mjs`: imports `spawn` and `spawnSync` from `node:child_process`. It launches a local headless Chrome, Edge or Chromium (found automatically or via `CHROME_PATH`) with a throwaway profile in the temp dir (`TASTE_SKILL_TMP` overrides it), talks to it over the DevTools protocol, and kills it on exit (`taskkill` on Windows). Reviewed: no remote code, arguments are fixed.
 - `design-taste-frontend/scripts/assets.mjs`: fetches public image and video APIs (Openverse, Wikimedia Commons, Art Institute of Chicago, The Met, Internet Archive, NASA), only when the script is run.
-- Do not edit these files by hand. Update by reinstalling, then review the diff and update the pins above.
+- `impeccable/scripts/impeccable` (shell launcher): can download a binary from `github.com/pbakaus/impeccable/releases` with `curl` or `wget`, and checks its sha256 against `engine-checksums.txt` before running. It refuses unverified downloads.
+- `impeccable/reference/hooks.md`: the skill's `hooks on` command installs a post-edit hook that runs the design detector. For Claude Code it writes `.claude/settings.local.json` (project) or `~/.claude/settings.json` (user); it can also write Codex, Cursor, Copilot, Grok and Gemini hook files. Nothing installs it until that command is run.
+- `impeccable/scripts/live-browser*.js`: browser-side code that uses `fetch`.
+
+## Rules for agents and humans
+
+- Ask before running any script under `.claude/skills/*/scripts/`, any command that downloads a binary, or `impeccable hooks on`. Say what it will execute, spawn or write first.
+- Do not install skill hooks (`.claude/settings*.json`, `.codex/`, `.cursor/` and similar) without the user's explicit approval, and review the resulting diff.
+- Do not edit the vendored files by hand. Update by reinstalling, then review the diff and update the pins above.
