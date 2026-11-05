@@ -8,7 +8,7 @@ Personal website of Johannes Spijkerman, restarted from scratch in November 2026
 
 ## Current state
 
-Bare React Router v8 scaffold (placeholder home page, no styling library). Decided: React Router v8 in framework mode. Open: CMS/content, analytics, design system, hosting. Do not pick an open item on your own. Propose it and write an ADR.
+Initial design phase: the home page is a feed built on mock data (`app/content/entries.ts`, all sample content), styled with plain CSS tokens in `app/app.css` per `DESIGN.md`. Decided: React Router v8 in framework mode; one typeface (Anybody, self-hosted via Fontsource). Proposed in [ADR 0003](docs/adr/0003-content-typeorm-tiptap.md), not built yet: Postgres via TypeORM, Tiptap editor. Open: analytics, hosting. Do not pick an open item on your own. Propose it and write an ADR.
 
 The old Next.js/Strapi site lives on the `backup/legacy-site` branch. Do not port code from it unless asked.
 
@@ -18,7 +18,7 @@ The old Next.js/Strapi site lives on the `backup/legacy-site` branch. Do not por
 - Node.js >= 22.22 (nvm locally, Docker for deploy). Pinned to 22.23.4 in `.nvmrc` (local and CI) and in the `compose.yml` image. Change all three together.
 - Category: portfolio (personal site with landing page). TypeScript throughout.
 - Tooling: pnpm, Biome (lint and format), Vitest (unit), Playwright (e2e).
-- Styling, CMS/content, analytics, design system and hosting are still open. See "Current state".
+- Styling is plain CSS with tokens (`DESIGN.md`). Content storage is proposed in ADR 0003. Analytics and hosting are still open. See "Current state".
 
 ## Commands
 
@@ -44,15 +44,11 @@ Run typecheck, lint and test before claiming work is done. CI (`.github/workflow
 - Licenses are recorded. The scripts got a pattern scan, not a full audit. Some spawn processes, download binaries or can install hooks: ask before running them (rules in the doc).
 - Do not edit them by hand. Update by reinstalling, review the diff, and update the doc.
 
-## Known temporary scaffold leftovers
-
-`app/root.tsx` still has the scaffold's Inter font link and dead Tailwind class names. Both are marked `TEMPORARY` in the code and go away when styling and the design system are decided.
-
 ## Conventions
 
 - Decisions go in `docs/adr/` as numbered ADRs. Follow the style of existing ones: short, sourced, honest about what is unverified.
 - Write down anything a future agent would need to ask about. Update this file when conventions change. Stale instructions are a bug.
-- No generic AI-looking UI. Before UI work, read `DESIGN.md` (once it exists) and follow its tokens and banned patterns.
+- No generic AI-looking UI. Before UI work, read `DESIGN.md` and follow its tokens and banned patterns.
 - Keep content portable: plain files or exportable data.
 
 ## Workflow
