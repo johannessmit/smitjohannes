@@ -1,3 +1,501 @@
+/* Tokens. Values and reasons are in DESIGN.md. Light only: the three material
+   fields are fixed colours and do not invert. */
+:root {
+  color-scheme: light;
+
+  --ground: #efede6;
+  --ink: #0f0e0c;
+
+  /* Each material: its flat field and the ink that sits on it. */
+  --hardware: #ff5a1f;
+  --on-hardware: #120d0a;
+  --software: #2b45ff;
+  --on-software: #f6f3ea;
+  --design: #ffd60a;
+  --on-design: #100e00;
+
+  --font: "Anybody Variable", "Arial Narrow", sans-serif;
+
+  --margin: clamp(1rem, 2.5vw, 2rem);
+  --gap: clamp(1rem, 2vw, 2rem);
+  --section-space: clamp(5rem, 12vw, 12rem);
+
+  --step-body: 1.125rem;
+  --step-small: 1rem;
+  --step-line: clamp(1.5rem, 3.2vw, 2.75rem);
+  --step-column: clamp(2rem, 4.4vw, 4rem);
+  --step-display: clamp(2.5rem, 9vw, 9rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
-  color-scheme: light dark;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 100%;
+  scrollbar-color: var(--ink) var(--ground);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: var(--step-body);
+  font-stretch: 100%;
+  font-weight: 450;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--ground);
+}
+
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem var(--gap);
+  padding: 0.5rem var(--margin);
+  background: var(--ground);
+  color: var(--ink);
+}
+
+.site-header__name {
+  font-size: var(--step-small);
+  font-stretch: 75%;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 0.5rem 0;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.filters__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  font-size: var(--step-small);
+  font-weight: 650;
+  text-decoration: none;
+  background: transparent;
+  color: var(--ink);
+  transition:
+    background-color 160ms var(--ease-out),
+    color 160ms var(--ease-out);
+}
+
+.filters__link:hover {
+  background: var(--ink);
+  color: var(--ground);
+}
+
+.filters__link[aria-current="page"] {
+  background: var(--ink);
+  color: var(--ground);
+}
+
+.filters__link[data-material="hardware"][aria-current="page"],
+.filters__link[data-material="hardware"]:hover {
+  background: var(--hardware);
+  color: var(--on-hardware);
+}
+.filters__link[data-material="software"][aria-current="page"],
+.filters__link[data-material="software"]:hover {
+  background: var(--software);
+  color: var(--on-software);
+}
+.filters__link[data-material="design"][aria-current="page"],
+.filters__link[data-material="design"]:hover {
+  background: var(--design);
+  color: var(--on-design);
+}
+
+/* ---------- Intro ---------- */
+
+.intro {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-content: space-between;
+  row-gap: 3rem;
+  min-height: 72svh;
+  padding: var(--margin) var(--margin) var(--margin);
+}
+
+.intro__title {
+  grid-column: 1 / span 11;
+  font-size: var(--step-display);
+  font-stretch: 78%;
+  font-weight: 850;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.intro__text {
+  grid-column: 7 / -1;
+  max-width: 36ch;
+  font-size: 1.375rem;
+  line-height: 1.35;
+}
+
+/* ---------- Feed ---------- */
+
+.feed {
+  display: block;
+}
+
+.entry {
+  --field: var(--ground);
+  --on: var(--ink);
+  background: var(--field);
+  color: var(--on);
+  padding: var(--margin);
+}
+
+.entry[data-material="hardware"] {
+  --field: var(--hardware);
+  --on: var(--on-hardware);
+}
+.entry[data-material="software"] {
+  --field: var(--software);
+  --on: var(--on-software);
+}
+.entry[data-material="design"] {
+  --field: var(--design);
+  --on: var(--on-design);
+}
+
+/* The ink tone swaps the pair so same-material neighbours stay apart. */
+.entry[data-tone="ink"] {
+  background: var(--on);
+  color: var(--field);
+}
+
+.entry__title {
+  font-stretch: 78%;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.entry__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  font-weight: 650;
+}
+
+.entry__summary {
+  max-width: 38ch;
+}
+
+.entry__year {
+  font-weight: 450;
+}
+
+/* Full: a whole screen. Title hangs at one side, the rest answers at the other. */
+.entry[data-size="full"] {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 3rem;
+  align-content: space-between;
+  min-height: 100svh;
+  padding-block: var(--margin) calc(var(--margin) * 1.5);
+}
+
+.entry[data-size="full"] .entry__title {
+  grid-column: 1 / span 10;
+  font-size: var(--step-display);
+  line-height: 0.92;
+}
+
+.entry[data-size="full"] .entry__summary {
+  grid-column: 1 / span 5;
+  font-size: 1.375rem;
+  line-height: 1.35;
+}
+
+.entry[data-size="full"] .entry__facts {
+  grid-column: 1 / span 5;
+  font-size: var(--step-small);
+}
+
+.entry[data-size="full"][data-side="right"] .entry__title {
+  grid-column: 3 / span 10;
+}
+.entry[data-size="full"][data-side="right"] .entry__summary,
+.entry[data-size="full"][data-side="right"] .entry__facts {
+  grid-column: 8 / span 5;
+}
+
+/* Column: a big date on one side, the words on the other. */
+.entry[data-size="column"] {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 1.5rem;
+  padding-block: var(--section-space) var(--section-space);
+}
+
+.entry[data-size="column"] .entry__title {
+  grid-column: 6 / span 7;
+  grid-row: 1;
+  font-size: var(--step-column);
+  line-height: 0.98;
+}
+
+.entry[data-size="column"] .entry__summary {
+  grid-column: 6 / span 5;
+  grid-row: 2;
+}
+
+.entry[data-size="column"] .entry__facts {
+  display: contents;
+}
+
+.entry[data-size="column"] .entry__material {
+  grid-column: 6 / span 5;
+  grid-row: 3;
+  font-size: var(--step-small);
+}
+
+.entry[data-size="column"] .entry__date {
+  grid-column: 1 / span 5;
+  grid-row: 1 / span 3;
+  align-self: start;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-stretch: 78%;
+  font-weight: 850;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.entry[data-size="column"] .entry__day,
+.entry[data-size="column"] .entry__month {
+  display: inline;
+}
+
+.entry[data-size="column"] .entry__year {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: var(--step-small);
+  font-stretch: 100%;
+  letter-spacing: 0;
+}
+
+.entry[data-size="column"][data-side="right"] .entry__title {
+  grid-column: 1 / span 7;
+}
+.entry[data-size="column"][data-side="right"] .entry__summary,
+.entry[data-size="column"][data-side="right"] .entry__material {
+  grid-column: 1 / span 5;
+}
+.entry[data-size="column"][data-side="right"] .entry__date {
+  grid-column: 8 / span 5;
+}
+
+/* Line: one row. Quick to scan, reacts on hover. */
+.entry[data-size="line"] {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: center;
+  min-height: 6rem;
+  padding-block: 1.25rem;
+  transition:
+    background-color 200ms var(--ease-out),
+    color 200ms var(--ease-out);
+}
+
+.entry[data-size="line"] .entry__title {
+  grid-column: 1 / span 8;
+  font-size: var(--step-line);
+  font-stretch: 88%;
+  line-height: 1;
+}
+
+.entry[data-size="line"] .entry__summary {
+  display: none;
+}
+
+.entry[data-size="line"] .entry__facts {
+  grid-column: 9 / -1;
+  justify-content: space-between;
+  font-size: var(--step-small);
+}
+
+.entry[data-size="line"] .entry__year {
+  display: none;
+}
+
+.entry[data-size="line"]:hover {
+  background: var(--on);
+  color: var(--field);
+}
+.entry[data-size="line"][data-tone="ink"]:hover {
+  background: var(--field);
+  color: var(--on);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem var(--gap);
+  padding: calc(var(--section-space) / 2) var(--margin) var(--margin);
+  font-size: var(--step-small);
+}
+
+.site-footer p:first-child {
+  font-size: var(--step-column);
+  font-stretch: 78%;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.site-footer p:last-child {
+  align-self: end;
+}
+
+/* ---------- Error ---------- */
+
+.error {
+  padding: var(--margin);
+  min-height: 100svh;
+}
+
+.error h1 {
+  font-size: var(--step-display);
+  font-stretch: 78%;
+  font-weight: 850;
+  line-height: 0.92;
+}
+
+.error pre {
+  overflow-x: auto;
+}
+
+/* ---------- Motion: one authored moment ----------
+   Entry titles open from a narrow cut to their resting width as they scroll
+   into view. Resting width is the default, so unsupported browsers and
+   reduced-motion users see the final state. */
+
+@keyframes open-up {
+  from {
+    font-stretch: 50%;
+  }
+  to {
+    font-stretch: 78%;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .entry[data-size="full"] .entry__title,
+    .entry[data-size="column"] .entry__title {
+      animation: open-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+  }
+}
+
+/* ---------- Phone ---------- */
+
+@media (max-width: 720px) {
+  .intro,
+  .entry[data-size="full"],
+  .entry[data-size="column"],
+  .entry[data-size="line"] {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .intro {
+    min-height: 60svh;
+    justify-content: space-between;
+  }
+
+  .intro__title {
+    font-size: 7.8vw;
+  }
+
+  .filters__link {
+    padding: 0 0.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .entry[data-size="full"] {
+    justify-content: space-between;
+    gap: 2rem;
+    min-height: 70svh;
+  }
+
+  .entry[data-size="column"] {
+    gap: 1rem;
+  }
+
+  .entry[data-size="column"] .entry__facts {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .entry[data-size="column"] .entry__date {
+    order: -1;
+    margin-bottom: 1rem;
+  }
+
+  .entry[data-size="column"] .entry__facts {
+    order: 3;
+  }
+
+  .entry[data-size="line"] {
+    gap: 0.5rem;
+    min-height: 0;
+  }
+
+  .entry[data-size="line"] .entry__facts {
+    justify-content: flex-start;
+    gap: 1rem;
+  }
 }

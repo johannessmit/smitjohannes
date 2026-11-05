@@ -16,6 +16,7 @@
     "format": "biome check --write ."
   },
   "dependencies": {
+    "@fontsource-variable/anybody": "^5.3.0",
     "@react-router/node": "^8.5.1",
     "@react-router/serve": "^8.5.1",
     "isbot": "^5.1.36",
